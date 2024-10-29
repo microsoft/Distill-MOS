@@ -1,14 +1,89 @@
-# Project
+<h1 align="center">Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment</h1>
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This repository contains sample code and weights accompanying the paper "Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment".
 
-As the maintainer of this project, please make a few updates:
+## Intended Uses
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+### Primary Use Cases
+
+The model released in this repository is distilled from a much larger teacher model and provides a trade-off between parameter count and speech quality estimation performance.
+The primary use of this model is to reproduce results reported in the paper and as a relatively light-weight MOS estimation model for research purposes that generalizes across a variety of tasks. 
+
+### Use Case Considerations and Model Limitations
+
+The model is only evaluated on the tasks reported in the paper, e.g., deep noise suppression and acoustic echo cancellation, and only for speech. The model may not generalize well to unseen tasks or languages. 
+Use of the model in unsupported scenarios may result in wrong or misleading speech quality estimates. 
+When using the model for a specific task, developers should consider accuracy, safety, and fairness, particularly in high-risk scenarios. 
+Developers should be aware of and adhere to applicable laws or regulations (including privacy, trade compliance laws, etc.) that are relevant to their use case.
+
+***Nothing contained in this Model Card should be interpreted as or deemed a restriction or modification to the license the model is released under.*** 
+
+## Usage
+
+### Sample Inference Code
+
+The file `sample.py` illustrates how to load a short speech recording (up to 5 seconds) and use the model to estimate the speech quality from 1 (`bad`) to 5 (`excellent`).
+
+### Local Installation
+
+To use the model locally, simply clone the repository:
+
+```bash
+git clone https://github.com/microsoft/Distill-MOS.git
+```
+
+## Benchmarks
+
+<img src="benchmark_results.png" alt="Pearson correlation coefficient on test datasets for baselines, teacher model, and selected distilled and pruned models." width="1000">
+
+## Training
+
+
+|                     |     |
+|---------------------|-----| 
+| Developer           | Microsoft |
+| Architecture        |  |
+| Inputs              | Speech recording |
+| Input length        |  |
+| GPUs                | 4 x A6000 |
+| Training time       | |
+| Training data       | |
+| Outputs             | Speech quality mean-opinion score (MOS) estimate |
+| Dates               | Trained between May and July 2024 |
+| Status              | |
+| Supported languages | English |
+| Release date        | Oct 2024 |
+| License             | MIT |
+
+### Training Datasets
+
+## Responsible AI Considerations
+
+Similarly to other (audio) AI models, the model may behave in ways that are unfair, unreliable, or inappropriate. Some of the limiting behaviors to be aware of include:
+
+* **Quality of Service** and **Limited Scope**: The model is trained primarily on spoken English and for speech enhancement or degradation scenarios. Evaluation on other languages, dialects, speaking styles, or speech scenarios may lead to inaccurate speech quality estimates.
+
+* **Representation and Stereotypes**: This model may over- or under-represent certain groups, or reinforce stereotypes present in speech data. These limitations may persist despite safety measures due to varying representation in the training data.
+
+* **Information Reliability**: The model can produce speech quality estimates that might seem plausible but are inaccurate.
+
+Developers should apply responsible AI best practices and ensure compliance with relevant laws and regulations. Important areas for consideration include:
+
+* **Fairness and Bias**: Assess and mitigate potential biases in evaluation data, especially for diverse speakers, accents, or acoustic conditions.
+
+* **High-Risk Scenarios**: Evaluate suitability for use in scenarios where inaccurate speech quality estimates could lead to harm, such as in security or safety-critical applications.
+
+* **Misinformation**: Be aware that incorrect speech quality estimates could potentially create or amplify misinformation. Implement robust verification mechanisms.
+
+* **Privacy Concerns**: Ensure that the processing of any speech recordings respects privacy rights and data protection regulations.
+
+* **Accessibility**: Consider the model's performance for users with visual or auditory impairments and implement appropriate accommodations.
+
+* **Copyright Issues**: Be cautious of potential copyright infringement when using copyrighted audio content.
+
+* **Deepfake Potential**: Implement safeguards against the model's potential misuse for creating misleading or manipulated content.
+
+Developers should inform end-users about the AI nature of the system and implement feedback mechanisms to continuously improve alignment accuracy and appropriateness.
 
 ## Contributing
 

@@ -60,9 +60,9 @@ git clone https://github.com/microsoft/Distill-MOS.git
 
 The model is trained on a large set of speech samples:
 
-- About 2600 hours of unlabeled speech and 180 hours of noise recordings from the <a href="https://www.microsoft.com/en-us/research/academic-program/deep-noise-suppression-challenge-icassp-2022/">4th Deep Noise Suppression Challenge<\a>
-- The output of publicly available <a href="https://github.com/coqui-ai/TTS">text-to-speech synthesis models<\a>
-- <a href="https://www.isca-archive.org/interspeech_2020/mittag20b_interspeech.pdf">PSTN<\a>
+- About 2600 hours of unlabeled speech and 180 hours of noise recordings from the <a href="https://www.microsoft.com/en-us/research/academic-program/deep-noise-suppression-challenge-icassp-2022/">4th Deep Noise Suppression Challenge</a>
+- The output of publicly available <a href="https://github.com/coqui-ai/TTS">text-to-speech synthesis models</a>
+- <a href="https://www.isca-archive.org/interspeech_2020/mittag20b_interspeech.pdf">PSTN</a>
 
 ## Responsible AI Considerations
 

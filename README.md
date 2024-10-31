@@ -6,12 +6,13 @@ This repository contains sample code and weights accompanying the paper "Distill
 
 ### Primary Use Cases
 
-The model released in this repository is distilled from a much larger teacher model and provides a trade-off between parameter count and speech quality estimation performance.
-The primary use of this model is to reproduce results reported in the paper and as a relatively light-weight MOS estimation model for research purposes that generalizes across a variety of tasks. 
+The model released in this repository takes a short speech recording as input and predicts its perceptual speech quality by providing an estimated mean opinion score (MOS). 
+The model is much smaller than other state-of-the-art MOS estimators, providing a trade-off between parameter count and speech quality estimation performance.
+The primary use of this model is to reproduce results reported in the paper and for research purposes as a relatively light-weight MOS estimation model that generalizes across a variety of tasks. 
 
 ### Use Case Considerations and Model Limitations
 
-The model is only evaluated on the tasks reported in the paper, e.g., deep noise suppression and acoustic echo cancellation, and only for speech. The model may not generalize well to unseen tasks or languages. 
+The model is only evaluated on the tasks reported in the paper, including deep noise suppression and acoustic echo cancellation, and only for speech. The model may not generalize to unseen tasks or languages. 
 Use of the model in unsupported scenarios may result in wrong or misleading speech quality estimates. 
 When using the model for a specific task, developers should consider accuracy, safety, and fairness, particularly in high-risk scenarios. 
 Developers should be aware of and adhere to applicable laws or regulations (including privacy, trade compliance laws, etc.) that are relevant to their use case.
@@ -42,13 +43,13 @@ git clone https://github.com/microsoft/Distill-MOS.git
 |                     |     |
 |---------------------|-----| 
 | Developer           | Microsoft |
-| Architecture        |  |
+| Architecture        | Convolutional transformer |
 | Inputs              | Speech recording |
 | Input length        |  |
 | GPUs                | 4 x A6000 |
 | Training time       | |
 | Training data       | |
-| Outputs             | Speech quality mean-opinion score (MOS) estimate |
+| Outputs             | Estimate of speech quality mean-opinion score (MOS) |
 | Dates               | Trained between May and July 2024 |
 | Status              | |
 | Supported languages | English |
@@ -56,6 +57,12 @@ git clone https://github.com/microsoft/Distill-MOS.git
 | License             | MIT |
 
 ### Training Datasets
+
+The model is trained on a large set of speech samples:
+
+- About 2600 hours of unlabeled speech and 180 hours of noise recordings from the <a href="https://www.microsoft.com/en-us/research/academic-program/deep-noise-suppression-challenge-icassp-2022/">4th Deep Noise Suppression Challenge<\a>
+- The output of publicly available <a href="https://github.com/coqui-ai/TTS">text-to-speech synthesis models<\a>
+- <a href="https://www.isca-archive.org/interspeech_2020/mittag20b_interspeech.pdf">PSTN<\a>
 
 ## Responsible AI Considerations
 

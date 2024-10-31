@@ -60,10 +60,16 @@ git clone https://github.com/microsoft/Distill-MOS.git
 
 The model is trained on a large set of speech samples:
 
-- About 2600 hours of unlabeled speech and 180 hours of noise recordings from the <a href="https://www.microsoft.com/en-us/research/academic-program/deep-noise-suppression-challenge-icassp-2022/">4th Deep Noise Suppression Challenge</a>
+- About 2600 hours of unlabeled speech and 180 hours of noise recordings from the <a href="https://www.microsoft.com/en-us/research/academic-program/deep-noise-suppression-challenge-icassp-2022/">ICASSP 2022 Deep Noise Suppression Challenge</a>
 - The output of publicly available <a href="https://github.com/coqui-ai/TTS">text-to-speech synthesis models</a>
 - <a href="https://www.isca-archive.org/interspeech_2020/mittag20b_interspeech.pdf">PSTN</a>
-
+- <a href="https://github.com/ConferencingSpeech/ConferencingSpeech2022">ConferencingSpeech 2022 Challenge</a>
+- <a href="https://www.isca-archive.org/interspeech_2021/mittag21_interspeech.pdf">NISQA</a>
+- <a href="https://voicemos-challenge-2022.github.io">VoiceMOS Challenge 2022</a>
+- Submissions to <a href="https://www.microsoft.com/en-us/research/uploads/prod/2021/06/0006608.pdf">ICASSP 2021 Deep Noise Suppression Challenge</a>
+- Submissions to <a href="https://www.isca-archive.org/interspeech_2022/diener22_interspeech.pdf">Interspeech 2022 audio deep packet loss concealment challenge</a>
+- Submissions to <a href="https://www.microsoft.com/en-us/research/academic-program/speech-signal-improvement-challenge-icassp-2023">ICASSP 2023 Speech Signal Improvement Challenge</a>
+  
 ## Responsible AI Considerations
 
 Similarly to other (audio) AI models, the model may behave in ways that are unfair, unreliable, or inappropriate. Some of the limiting behaviors to be aware of include:

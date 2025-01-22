@@ -23,7 +23,7 @@ Developers should be aware of and adhere to applicable laws or regulations (incl
 
 ### Sample Inference Code
 
-The file `sample.py` illustrates how to load a short speech recording (up to 5 seconds) and use the model to estimate the speech quality from 1 (`bad`) to 5 (`excellent`).
+The file `sample.py` illustrates how to load a speech recording and use the model to estimate the speech quality from 1 (`bad`) to 5 (`excellent`).
 
 ### Local Installation
 

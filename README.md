@@ -27,10 +27,10 @@ The file `sample.py` illustrates how to load a speech recording and use the mode
 
 ### Local Installation
 
-To use the model locally, simply clone the repository:
+To use the model locally, simply install using pip:
 
 ```bash
-git clone https://github.com/microsoft/Distill-MOS.git
+pip install distillmos
 ```
 
 ## Benchmarks

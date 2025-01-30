@@ -20,11 +20,6 @@ Developers should be aware of and adhere to applicable laws or regulations (incl
 ***Nothing contained in this Model Card should be interpreted as or deemed a restriction or modification to the license the model is released under.*** 
 
 ## Usage
-
-### Sample Inference Code
-
-The file `sample.py` illustrates how to load a speech recording and use the model to estimate the speech quality from 1 (`bad`) to 5 (`excellent`).
-
 ### Local Installation
 
 To use the model locally, simply install using pip:
@@ -33,8 +28,22 @@ To use the model locally, simply install using pip:
 pip install distillmos
 ```
 
-## Benchmarks
+### Sample Inference Code
+Model instantiation is as easy as
+```python
+import distillmos
 
+sqa_model = distillmos.ConvTransformerSQAModel()
+sqa_model.eval()
+```
+weights are loaded automatically.
+
+The input to the model is a `torch.Tensor` with shape `[batch size x signal_length]`, let's assume the variable (`speech`) containing mono speech waveforms **sampled at 16kHz**. The model retuns a batch of estimated mean opinion scores in the range 1 (`bad`) .. 5 (`excellent`).
+```python
+mos = sqa_model(speech)
+```
+
+## Benchmarks
 <img src="benchmark_results.png" alt="Pearson correlation coefficient on test datasets for baselines, teacher model, and selected distilled and pruned models." width="1000">
 
 ## Training

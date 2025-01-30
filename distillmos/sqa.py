@@ -3,8 +3,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torch import nn
-from .third_party.xls_r_sqa.sqa_model import SingleLayerModel
-from .third_party.xls_r_sqa.config import Config, FEAT_SEQ_LEN
+from xls_r_sqa.config import Config, FEAT_SEQ_LEN
+from xls_r_sqa.sqa_model import SingleLayerModel
 
 N_LAYERS_CNN = 6
 CNN_FINAL_CHANNELS = 256
@@ -18,7 +18,7 @@ thispath = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_WEIGHTS_CHKPT = os.path.join(thispath, "weights", "distill_mos_v7.pt")
 
 
-def complex_compressed(x, hop_length, win_length):
+def __complex_compressed(x, hop_length, win_length):
     n_fft = win_length
     x = F.pad(
         x,
@@ -40,7 +40,7 @@ def complex_compressed(x, hop_length, win_length):
     return compressed
 
 
-class ComplexSpecCNN(nn.Module):
+class __ComplexSpecCNN(nn.Module):
     def __init__(self, final_channels, num_layers):
         super().__init__()
         self.hop_length = 160  # 10 ms
@@ -73,7 +73,7 @@ class ComplexSpecCNN(nn.Module):
         ), f"final_channels={final_channels} but last_channels={curr_channels}, choose a different configuration"
 
     def forward(self, xin):
-        compressed = complex_compressed(xin, self.hop_length, self.win_length).permute(
+        compressed = __complex_compressed(xin, self.hop_length, self.win_length).permute(
             0, 3, 1, 2
         )
         x = self.cnn(compressed)
@@ -82,9 +82,18 @@ class ComplexSpecCNN(nn.Module):
 
 
 class ConvTransformerSQAModel(nn.Module):
-    def __init__(self, load_weights=True):
+    """
+    Convolutional Neural Network + Transformer model for speech quality assessment.
+    """
+
+    def __init__(self, load_weights=True, segmenting_in_forward=True):
+        """
+        @param load_weights: whether to load the weights from the default checkpoint, default is True
+        @param segmenting_in_forward: whether to segment and pad the input in the forward pass, default is True. 
+        If False (the preferred option for training/fine-tuning), the input must have shape (batch, 122880)
+        """
         super().__init__()
-        self.cnn = ComplexSpecCNN(CNN_FINAL_CHANNELS, N_LAYERS_CNN)
+        self.cnn = __ComplexSpecCNN(CNN_FINAL_CHANNELS, N_LAYERS_CNN)
         fdim = self.cnn.fdim_cnn_out
         transformer_pool_attn_conf = Config(
             "",
@@ -98,26 +107,37 @@ class ConvTransformerSQAModel(nn.Module):
         # override the input dimension
         transformer_pool_attn_conf.dim_input = CNN_FINAL_CHANNELS * fdim
         self.transformer_pool_attn = SingleLayerModel(transformer_pool_attn_conf)
+        self.segmenting_in_forward = segmenting_in_forward
+
         if load_weights:
-            chkpt = torch.load(
-                DEFAULT_WEIGHTS_CHKPT, map_location="cpu", weights_only=True
-            )
+            chkpt = torch.load(DEFAULT_WEIGHTS_CHKPT, map_location="cpu")
             self.load_state_dict(chkpt["model"])
             print("DistillMOS variant 7 weights loaded from:", DEFAULT_WEIGHTS_CHKPT)
 
     def forward(self, x):
+        """
+        @param x: 16kHz input waveform, shape (batch, seq_len),
+        where seq_len can be arbitrary if segmenting_in_forward is True, and must be 122880 if segmenting_in_forward is False
+
+        @return: predicted MOS score, range 1..5, shape (batch,)
+        """
         # segmenting / padding
-        wav_overlength = x.shape[1] - SEQ_LEN
-        if wav_overlength < 0:
-            x = F.pad(x, (0, -wav_overlength))
-            wav_overlength = 0
-        num_hops = int(np.ceil(wav_overlength / MAX_HOP_LEN)) + 1
-        rel_crop_region_start = list(np.linspace(0, 1, num_hops))
-        wav_all = [
-            x[:, int(c * wav_overlength) : int(c * wav_overlength) + SEQ_LEN]
-            for c in rel_crop_region_start
-        ]
-        x = torch.cat(wav_all, dim=0)  # concatenate along batch dimension
+        if not self.segmenting_in_forward:
+            assert (
+                x.shape[1] == SEQ_LEN
+            ), f"input shape {x.shape} does not match SEQ_LEN={SEQ_LEN}"
+        else:
+            wav_overlength = x.shape[1] - SEQ_LEN
+            if wav_overlength < 0:
+                x = F.pad(x, (0, -wav_overlength))
+                wav_overlength = 0
+            num_hops = int(np.ceil(wav_overlength / MAX_HOP_LEN)) + 1
+            rel_crop_region_start = list(np.linspace(0, 1, num_hops))
+            wav_all = [
+                x[:, int(c * wav_overlength) : int(c * wav_overlength) + SEQ_LEN]
+                for c in rel_crop_region_start
+            ]
+            x = torch.cat(wav_all, dim=0)  # concatenate along batch dimension
 
         # normalization
         x = x / (torch.max(torch.abs(x), dim=1, keepdim=True).values + 1e-8)
@@ -127,9 +147,8 @@ class ConvTransformerSQAModel(nn.Module):
         feat = feat.permute(0, 2, 1)
         norm_qual = self.transformer_pool_attn(feat)
 
-        # average logits over hops
-        logit_qual = torch.logit(norm_qual)
-        logit_qual = logit_qual.reshape(num_hops, -1, 1)
-        logit_qual = torch.mean(logit_qual, dim=0)
-        qual = 1 + 4 * torch.sigmoid(logit_qual)
-        return qual
+        if self.segmenting_in_forward:
+            norm_qual = norm_qual.reshape(num_hops, -1, 1)
+            norm_qual = torch.mean(norm_qual, dim=0)
+
+        return 1 + 4 * norm_qual

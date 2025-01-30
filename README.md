@@ -12,7 +12,7 @@ The primary use of this model is to reproduce results reported in the paper and 
 
 ### Use Case Considerations and Model Limitations
 
-The model is only evaluated on the tasks reported in the paper, including deep noise suppression and acoustic echo cancellation, and only for speech. The model may not generalize to unseen tasks or languages. 
+The model is only evaluated on the tasks reported in the paper, including deep noise suppression and signal improvement, and only for speech. The model may not generalize to unseen tasks or languages. 
 Use of the model in unsupported scenarios may result in wrong or misleading speech quality estimates. 
 When using the model for a specific task, developers should consider accuracy, safety, and fairness, particularly in high-risk scenarios. 
 Developers should be aware of and adhere to applicable laws or regulations (including privacy, trade compliance laws, etc.) that are relevant to their use case.
@@ -20,21 +20,30 @@ Developers should be aware of and adhere to applicable laws or regulations (incl
 ***Nothing contained in this Model Card should be interpreted as or deemed a restriction or modification to the license the model is released under.*** 
 
 ## Usage
-
-### Sample Inference Code
-
-The file `sample.py` illustrates how to load a short speech recording (up to 5 seconds) and use the model to estimate the speech quality from 1 (`bad`) to 5 (`excellent`).
-
 ### Local Installation
 
-To use the model locally, simply clone the repository:
+To use the model locally, simply install using pip:
 
 ```bash
-git clone https://github.com/microsoft/Distill-MOS.git
+pip install distillmos
+```
+
+### Sample Inference Code
+Model instantiation is as easy as:
+```python
+import distillmos
+
+sqa_model = distillmos.ConvTransformerSQAModel()
+sqa_model.eval()
+```
+Weights are loaded automatically.
+
+The input to the model is a `torch.Tensor` with shape `[batch_size x signal_length]`, let's assume the variable (`speech`), containing mono speech waveforms **sampled at 16kHz**. The model retuns a batch of estimated mean opinion scores in the range 1 (bad) .. 5 (excellent).
+```python
+mos = sqa_model(speech)
 ```
 
 ## Benchmarks
-
 <img src="benchmark_results.png" alt="Pearson correlation coefficient on test datasets for baselines, teacher model, and selected distilled and pruned models." width="1000">
 
 ## Training

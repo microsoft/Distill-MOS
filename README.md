@@ -12,7 +12,7 @@ The primary use of this model is to reproduce results reported in the paper and 
 
 ### Use Case Considerations and Model Limitations
 
-The model is only evaluated on the tasks reported in the paper, including deep noise suppression and acoustic echo cancellation, and only for speech. The model may not generalize to unseen tasks or languages. 
+The model is only evaluated on the tasks reported in the paper, including deep noise suppression and signal improvement, and only for speech. The model may not generalize to unseen tasks or languages. 
 Use of the model in unsupported scenarios may result in wrong or misleading speech quality estimates. 
 When using the model for a specific task, developers should consider accuracy, safety, and fairness, particularly in high-risk scenarios. 
 Developers should be aware of and adhere to applicable laws or regulations (including privacy, trade compliance laws, etc.) that are relevant to their use case.

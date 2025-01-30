@@ -38,7 +38,7 @@ sqa_model.eval()
 ```
 weights are loaded automatically.
 
-The input to the model is a `torch.Tensor` with shape `[batch size x signal_length]`, let's assume the variable (`speech`) containing mono speech waveforms **sampled at 16kHz**. The model retuns a batch of estimated mean opinion scores in the range 1 (`bad`) .. 5 (`excellent`).
+The input to the model is a `torch.Tensor` with shape `[batch_size x signal_length]`, let's assume the variable (`speech`), containing mono speech waveforms **sampled at 16kHz**. The model retuns a batch of estimated mean opinion scores in the range 1 (bad) .. 5 (excellent).
 ```python
 mos = sqa_model(speech)
 ```

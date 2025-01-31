@@ -232,11 +232,9 @@ def command_line_inference():
         input_type = "file_list"
 
     if args.output:
-        output_given = True
         if input_type == "file":
             parser.error("Output file cannot be provided for single file input.")
     else:
-        output_given = False
         args.output = "distillmos_inference.csv"
 
     # make sure that output file directory exists

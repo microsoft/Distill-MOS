@@ -161,10 +161,6 @@ def _infer_file_list(file_list):
     model = ConvTransformerSQAModel()
     model.eval()
     for line in file_list:
-        line = line.strip()
-        if not line:
-            continue
-        print(line)
         x, sr = torchaudio.load(line)
 
         if x.shape[0] > 1:

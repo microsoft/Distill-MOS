@@ -42,6 +42,13 @@ with torch.no_grad():
 print('MOS Score:', mos)
 ```
 
+### Command Line Interface
+You can also use distillmos from the command line for inference on single .wav files, folders containing .wav files, and lists of file paths . Please call
+```bash
+distillmos --help
+```
+for a detailed list of available commands and options.
+
 
 ## Intended Uses
 

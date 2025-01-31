@@ -157,7 +157,7 @@ class ConvTransformerSQAModel(nn.Module):
 
 
 # file list inference
-def infer_file_list(file_list):
+def _infer_file_list(file_list):
     model = ConvTransformerSQAModel()
     model.eval()
     with open(file_list) as f:
@@ -167,11 +167,17 @@ def infer_file_list(file_list):
                 continue
             print(line)
             x, sr = torchaudio.load(line)
+
+            if x.shape[0] > 1:
+                print(
+                    f"Warning: {line} has multiple channels, using only the first channel."
+                )
+            x = x[0, None, :]
+
             # resample to 16kHz if needed
             if sr != 16000:
                 x = torchaudio.transforms.Resample(sr, 16000)(x)
 
-            x = x.unsqueeze(0)
             with torch.no_grad():
                 y = model(x)
 
@@ -179,10 +185,14 @@ def infer_file_list(file_list):
 
 
 # command line inference
-def __main__():
+def command_line_inference():
     parser = argparse.ArgumentParser()
     # enable usage for single wav file, folder, or list of files (one per line, file paths relative if folder is provided), enable output to a (default or specified) csv file.
     # first add positional argument for input folder or file (optional, because file list can be provided)
+    parser.add_help(
+        "Infer DistillMOS for a folder of wav files, a single wav file, or a list of wav files."
+    )
+
     parser.add_argument(
         "input",
         type=str,
@@ -194,11 +204,14 @@ def __main__():
         "--output",
         type=str,
         help="output csv file, not written if only a single file is provided",
-        default="distillmos_out.csv",
     )
     # add optional argument for file list
     parser.add_argument(
-        "-l", "--file_list", type=str, help="file list for inference", default=None
+        "-l",
+        "--file_list",
+        type=str,
+        help="file list for inference, if folder is given, entries in file list are relative to folder",
+        default=None,
     )
 
     args = parser.parse_args()
@@ -226,20 +239,30 @@ def __main__():
             parser.error("File list does not exist")
         input_type = "file_list"
 
+    if args.output:
+        output_given = True
+        if input_type == "file":
+            parser.error("Output file cannot be provided for single file input.")
+    else:
+        output_given = False
+        args.output = "distillmos_inference.csv"
+
     # make sure that output file directory exists
     output_dir = os.path.abspath(os.path.dirname(args.output))
     if not os.path.exists(output_dir):
         parser.error("Invalid path for output file, directory does not exist")
     # make sure not to overwrite existing output file
     if os.path.exists(args.output):
-        print(f"Warning: Output file {args.output} already exists. A new name will be generated to avoid overwriting the existing file.")
+        print(
+            f"Warning: Output file {args.output} already exists. A new name will be generated to avoid overwriting the existing file."
+        )
         i = 1
         while os.path.exists(args.output):
             args.output = os.path.join(
                 output_dir,
                 os.path.splitext(args.output)[0]
                 + f"_{i}."
-                + os.path.splitext(args.output)[1]
+                + os.path.splitext(args.output)[1],
             )
             i += 1
 
@@ -262,14 +285,13 @@ def __main__():
                 files = [line.strip() for line in f]
 
     if input_type == "file":
-        for line, y in infer_file_list([args.input]):
+        for line, y in _infer_file_list([args.input]):
             print(f"{line} DistillMOS: {y}")
     else:
         with open(args.output, "w") as f:
             f.write("file,DistillMOS\n")
-            for line, y in infer_file_list(files):
+            for line, y in _infer_file_list(files):
                 if input_type == "folder" or (input_type == "file_list" and args.input):
                     line = os.path.relpath(line, args.input)
                 print(f"{line} DistillMOS: {y}")  # always print to stdout
                 f.write(f"{line},{y}\n")
-        

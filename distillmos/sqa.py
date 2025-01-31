@@ -160,28 +160,27 @@ class ConvTransformerSQAModel(nn.Module):
 def _infer_file_list(file_list):
     model = ConvTransformerSQAModel()
     model.eval()
-    with open(file_list) as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            print(line)
-            x, sr = torchaudio.load(line)
+    for line in file_list:
+        line = line.strip()
+        if not line:
+            continue
+        print(line)
+        x, sr = torchaudio.load(line)
 
-            if x.shape[0] > 1:
-                print(
-                    f"Warning: {line} has multiple channels, using only the first channel."
-                )
-            x = x[0, None, :]
+        if x.shape[0] > 1:
+            print(
+                f"Warning: {line} has multiple channels, using only the first channel."
+            )
+        x = x[0, None, :]
 
-            # resample to 16kHz if needed
-            if sr != 16000:
-                x = torchaudio.transforms.Resample(sr, 16000)(x)
+        # resample to 16kHz if needed
+        if sr != 16000:
+            x = torchaudio.transforms.Resample(sr, 16000)(x)
 
-            with torch.no_grad():
-                y = model(x)
+        with torch.no_grad():
+            y = model(x)
 
-            yield line, y.item()
+        yield line, y.item()
 
 
 # command line inference

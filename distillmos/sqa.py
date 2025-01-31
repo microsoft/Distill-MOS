@@ -189,10 +189,7 @@ def command_line_inference():
     parser = argparse.ArgumentParser()
     # enable usage for single wav file, folder, or list of files (one per line, file paths relative if folder is provided), enable output to a (default or specified) csv file.
     # first add positional argument for input folder or file (optional, because file list can be provided)
-    parser.add_help(
-        "Infer DistillMOS for a folder of wav files, a single wav file, or a list of wav files."
-    )
-
+    
     parser.add_argument(
         "input",
         type=str,

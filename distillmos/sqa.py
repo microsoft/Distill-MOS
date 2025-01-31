@@ -18,7 +18,7 @@ thispath = os.path.dirname(os.path.abspath(__file__))
 DEFAULT_WEIGHTS_CHKPT = os.path.join(thispath, "weights", "distill_mos_v7.pt")
 
 
-def __complex_compressed(x, hop_length, win_length):
+def _complex_compressed(x, hop_length, win_length):
     n_fft = win_length
     x = F.pad(
         x,
@@ -40,7 +40,7 @@ def __complex_compressed(x, hop_length, win_length):
     return compressed
 
 
-class __ComplexSpecCNN(nn.Module):
+class _ComplexSpecCNN(nn.Module):
     def __init__(self, final_channels, num_layers):
         super().__init__()
         self.hop_length = 160  # 10 ms
@@ -73,7 +73,7 @@ class __ComplexSpecCNN(nn.Module):
         ), f"final_channels={final_channels} but last_channels={curr_channels}, choose a different configuration"
 
     def forward(self, xin):
-        compressed = __complex_compressed(xin, self.hop_length, self.win_length).permute(
+        compressed = _complex_compressed(xin, self.hop_length, self.win_length).permute(
             0, 3, 1, 2
         )
         x = self.cnn(compressed)
@@ -93,7 +93,7 @@ class ConvTransformerSQAModel(nn.Module):
         If False (the preferred option for training/fine-tuning), the input must have shape (batch, 122880)
         """
         super().__init__()
-        self.cnn = __ComplexSpecCNN(CNN_FINAL_CHANNELS, N_LAYERS_CNN)
+        self.cnn = _ComplexSpecCNN(CNN_FINAL_CHANNELS, N_LAYERS_CNN)
         fdim = self.cnn.fdim_cnn_out
         transformer_pool_attn_conf = Config(
             "",

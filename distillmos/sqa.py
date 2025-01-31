@@ -3,6 +3,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torch import nn
+import torchaudio
+import argparse
 from xls_r_sqa.config import Config, FEAT_SEQ_LEN
 from xls_r_sqa.sqa_model import SingleLayerModel
 
@@ -89,7 +91,7 @@ class ConvTransformerSQAModel(nn.Module):
     def __init__(self, load_weights=True, segmenting_in_forward=True):
         """
         @param load_weights: whether to load the weights from the default checkpoint, default is True
-        @param segmenting_in_forward: whether to segment and pad the input in the forward pass, default is True. 
+        @param segmenting_in_forward: whether to segment and pad the input in the forward pass, default is True.
         If False (the preferred option for training/fine-tuning), the input must have shape (batch, 122880)
         """
         super().__init__()
@@ -152,3 +154,122 @@ class ConvTransformerSQAModel(nn.Module):
             norm_qual = torch.mean(norm_qual, dim=0)
 
         return 1 + 4 * norm_qual
+
+
+# file list inference
+def infer_file_list(file_list):
+    model = ConvTransformerSQAModel()
+    model.eval()
+    with open(file_list) as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            print(line)
+            x, sr = torchaudio.load(line)
+            # resample to 16kHz if needed
+            if sr != 16000:
+                x = torchaudio.transforms.Resample(sr, 16000)(x)
+
+            x = x.unsqueeze(0)
+            with torch.no_grad():
+                y = model(x)
+
+            yield line, y.item()
+
+
+# command line inference
+def __main__():
+    parser = argparse.ArgumentParser()
+    # enable usage for single wav file, folder, or list of files (one per line, file paths relative if folder is provided), enable output to a (default or specified) csv file.
+    # first add positional argument for input folder or file (optional, because file list can be provided)
+    parser.add_argument(
+        "input",
+        type=str,
+        help="input folder or file, for folder input, all wav files in the folder are considered",
+    )
+    # add optional argument for output csv file
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=str,
+        help="output csv file, not written if only a single file is provided",
+        default="distillmos_out.csv",
+    )
+    # add optional argument for file list
+    parser.add_argument(
+        "-l", "--file_list", type=str, help="file list for inference", default=None
+    )
+
+    args = parser.parse_args()
+    # make sure that either input or file list is provided
+    if not args.input and not args.file_list:
+        parser.error("Either input or file list must be provided.")
+
+    # make sure that input is a folder or file
+    if args.input:
+        if not os.path.exists(args.input):
+            parser.error("Input folder or file does not exist.")
+        if os.path.isdir(args.input) and not args.file_list:
+            input_type = "folder"
+        else:
+            if not args.input.endswith(".wav"):
+                parser.error("Input file must be a wav file.")
+            if args.file_list:
+                parser.error(
+                    "File list and single file input cannot be provided together."
+                )
+            input_type = "file"
+    else:
+        # make sure that file list exists
+        if not os.path.exists(args.file_list):
+            parser.error("File list does not exist")
+        input_type = "file_list"
+
+    # make sure that output file directory exists
+    output_dir = os.path.abspath(os.path.dirname(args.output))
+    if not os.path.exists(output_dir):
+        parser.error("Invalid path for output file, directory does not exist")
+    # make sure not to overwrite existing output file
+    if os.path.exists(args.output):
+        print(f"Warning: Output file {args.output} already exists. A new name will be generated to avoid overwriting the existing file.")
+        i = 1
+        while os.path.exists(args.output):
+            args.output = os.path.join(
+                output_dir,
+                os.path.splitext(args.output)[0]
+                + f"_{i}."
+                + os.path.splitext(args.output)[1]
+            )
+            i += 1
+
+    files = []
+    if input_type == "folder":
+        files = [
+            os.path.join(args.input, f)
+            for f in os.listdir(args.input)
+            if f.endswith(".wav")
+        ]
+        # make sure that there are wav files in the folder
+        if not files:
+            parser.error("No wav files found in the folder")
+    elif input_type == "file_list":
+        # read file list
+        with open(args.file_list) as f:
+            if args.input:
+                files = [os.path.join(args.input, line.strip()) for line in f]
+            else:
+                files = [line.strip() for line in f]
+
+    if input_type == "file":
+        for line, y in infer_file_list([args.input]):
+            print(f"{line} DistillMOS: {y}")
+    else:
+        with open(args.output, "w") as f:
+            f.write("file,DistillMOS\n")
+            for line, y in infer_file_list(files):
+                if input_type == "folder" or (input_type == "file_list" and args.input):
+                    line = os.path.relpath(line, args.input)
+                print(f"{line} DistillMOS: {y}")  # always print to stdout
+                f.write(f"{line},{y}\n")
+        

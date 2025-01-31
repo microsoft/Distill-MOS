@@ -16,6 +16,7 @@ setup(
         "xls_r_sqa @ git+https://github.com/lcn-kul/xls-r-analysis-sqa@fac0189e13d4be70b10e5a679bc966119d8b5432",
         "torch>=1.11.0",
         "numpy>=1.23.5",
+        "soundfile",
         "torchaudio",
     ],
     entry_points={

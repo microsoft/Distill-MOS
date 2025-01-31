@@ -18,4 +18,9 @@ setup(
         "numpy>=1.23.5",
         "torchaudio",
     ],
+    entry_points={
+        "console_scripts": [
+            "distillmos = distillmos.sqa:command_line_inference",
+        ],
+    },
 )

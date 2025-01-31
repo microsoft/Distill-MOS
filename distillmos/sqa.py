@@ -200,7 +200,7 @@ def command_line_inference():
         "-o",
         "--output",
         type=str,
-        help="output csv file, not written if only a single file is provided",
+        help="output csv file, not written if only a single file is provided, default is distillmos_inference.csv",
     )
     # add optional argument for file list
     parser.add_argument(

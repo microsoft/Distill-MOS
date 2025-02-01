@@ -58,7 +58,7 @@ Example: LPCNet_listening_test/mfall/dir1/
 
 **LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/lpcnq.wav" type="audio/wav">
+  <source src="https://raw.githubusercontent.com/QxLabIreland/datasets/main/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnq.wav" type="audio/wav">
 </video>
 
 **LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)**  
@@ -88,7 +88,7 @@ Example: LPCNet_listening_test/mfall/dir1/
 
 
 ### TCDvoip-NOISE  
-**Speaker MK**  
+Speaker MK 
 
 **C01 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>

@@ -275,10 +275,19 @@ def command_line_inference():
 
     if input_type == "file":
         for line, y in _infer_file_list([args.input]):
-            print(f"{line} DistillMOS: {y}")
+            # trim print output, so that it fits in one line in the console
+            if len(line) > 50:
+                printline = "[...]" + line[-50:]
+            else:
+                printline = line
+            print(f"{printline} DistillMOS: {y}")
     else:
         with open(args.output, "w") as f:
             f.write("file,DistillMOS\n")
             for line, y in _infer_file_list(files):
-                print(f"{line} DistillMOS: {y}")  # always print to stdout
+                if len(line) > 50:
+                    printline = "[...]" + line[-50:]
+                else:
+                    printline = line
+                print(f"{printline} DistillMOS: {y}")
                 f.write(f"{line},{y}\n")

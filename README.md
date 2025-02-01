@@ -60,19 +60,19 @@ Example: LPCNet_listening_test/mfall/dir1/
 <video src="https://github.com/user-attachments/assets/fc0f3e04-fa46-49fb-9751-904a6d1249c2">
 
 **LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)**  
-https://github.com/user-attachments/assets/1b08cd9d-c395-46c2-8707-c216bd742320
+<video src="https://github.com/user-attachments/assets/1b08cd9d-c395-46c2-8707-c216bd742320">
 
 **MELP (Distill-MOS: ??, Human MOS: ??)**  
-https://github.com/user-attachments/assets/6fee729d-469e-4dc8-a5cd-667637411974
+<video src="hhttps://github.com/user-attachments/assets/6fee729d-469e-4dc8-a5cd-667637411974">
 
 **Opus (Distill-MOS: ??, Human MOS: ??)**  
-https://github.com/user-attachments/assets/fecdf175-0e32-458a-8e20-1861537d110a
+<video src="hhttps://github.com/user-attachments/assets/fecdf175-0e32-458a-8e20-1861537d110a">
 
 **Speex (Distill-MOS: ??, Human MOS: ??)**  
-https://github.com/user-attachments/assets/df61b5d9-5c69-472a-a6c7-05d331785b55
+<video src="hhttps://github.com/user-attachments/assets/df61b5d9-5c69-472a-a6c7-05d331785b55">
 
 **Reference (Distill-MOS: ??, Human MOS: ??)**  
-https://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d
+<video src="hhttps://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d">
 
 
 ### TCDvoip-NOISE  

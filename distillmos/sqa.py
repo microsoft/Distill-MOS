@@ -255,7 +255,7 @@ def command_line_inference():
 
             args.output = os.path.join(
                 filename
-                + f"_{i}."
+                + f"_{i}"
                 + filext
             )
             i += 1

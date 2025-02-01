@@ -57,34 +57,22 @@ Here are some example estimates from the <a href="https://github.com/QxLabIrelan
 Example: LPCNet_listening_test/mfall/dir1/
 
 **LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="https://raw.githubusercontent.com/QxLabIreland/datasets/main/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnq.wav" type="audio/wav">
-</video>
+https://github.com/user-attachments/assets/2ef36e8c-6915-4e4e-9697-871a6420da5a
 
 **LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/lpcnu.wav" type="audio/wav">
-</video>
+https://github.com/user-attachments/assets/1b08cd9d-c395-46c2-8707-c216bd742320
 
 **MELP (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/melp.wav" type="audio/wav">
-</video>
+https://github.com/user-attachments/assets/6fee729d-469e-4dc8-a5cd-667637411974
 
 **Opus (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/opus.wav" type="audio/wav">
-</video>
+https://github.com/user-attachments/assets/fecdf175-0e32-458a-8e20-1861537d110a
 
 **Speex (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/speex.wav" type="audio/wav">
-</video>
+https://github.com/user-attachments/assets/df61b5d9-5c69-472a-a6c7-05d331785b55
 
 **Reference (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/ref.wav" type="audio/wav">
-</video>
+https://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d
 
 
 ### TCDvoip-NOISE  

@@ -248,11 +248,15 @@ def command_line_inference():
         )
         i = 1
         while os.path.exists(args.output):
+            filename, filext = os.path.splitext(args.output)
+            if filename.endswith(f"_{i-1}"):
+                filename = filename[:-len(f"_{i-1}")]
+
+
             args.output = os.path.join(
-                output_dir,
-                os.path.splitext(args.output)[0]
+                filename
                 + f"_{i}."
-                + os.path.splitext(args.output)[1],
+                + filext
             )
             i += 1
 

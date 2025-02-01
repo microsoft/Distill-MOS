@@ -1,1 +1,0 @@
-These audio samples are from https://github.com/QxLabIreland/datasets@597fbf9b60efe555c1f7180e48a508394d817f73. They are licensed under the Apache 2.0 License (cf. `./LICENSE`)

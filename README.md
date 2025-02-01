@@ -50,12 +50,9 @@ distillmos --help
 for a detailed list of available commands and options.
 
 ## Example Ratings
-Here are some example estimates from the <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech">GenSpeech</a> and <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE">TCDvoip-NOISE</a> datasets.
+Here are some example estimates from the <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech">GenSpeech</a> dataset licensed under <a href="https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE">Apache v2>.
 
-
-### GenSpeech
 Example: LPCNet_listening_test/mfall/dir1/
-
 **LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)**  
 <video src="https://github.com/user-attachments/assets/fc0f3e04-fa46-49fb-9751-904a6d1249c2">
 
@@ -73,40 +70,6 @@ Example: LPCNet_listening_test/mfall/dir1/
 
 **Reference (Distill-MOS: ??, Human MOS: ??)**  
 <video src="https://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d">
-
-
-### TCDvoip-NOISE  
-Speaker MK 
-
-**C01 (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/TCDvoip-NOISE/C_01_NOISE_MK.wav" type="audio/wav">
-</video>
-
-**C05 (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/TCDvoip-NOISE/C_05_NOISE_MK.wav" type="audio/wav">
-</video>
-
-**C09 (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/TCDvoip-NOISE/C_09_NOISE_MK.wav" type="audio/wav">
-</video>
-
-**C13 (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/TCDvoip-NOISE/C_13_NOISE_MK.wav" type="audio/wav">
-</video>
-
-**C17 (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/TCDvoip-NOISE/C_17_NOISE_MK.wav" type="audio/wav">
-</video>
-
-**C21 (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="./test_audio/TCDvoip-NOISE/C_21_NOISE_MK.wav" type="audio/wav">
-</video>
 
 
 ## Intended Uses

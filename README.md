@@ -58,32 +58,32 @@ Example: LPCNet_listening_test/mfall/dir1/
 
 **LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnq.wav" type="audio/wav">
+  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/lpcnq.wav" type="audio/wav">
 </video>
 
 **LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnu.wav" type="audio/wav">
+  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/lpcnu.wav" type="audio/wav">
 </video>
 
 **MELP (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/melp.wav" type="audio/wav">
+  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/melp.wav" type="audio/wav">
 </video>
 
 **Opus (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/opus.wav" type="audio/wav">
+  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/opus.wav" type="audio/wav">
 </video>
 
 **Speex (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/speex.wav" type="audio/wav">
+  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/speex.wav" type="audio/wav">
 </video>
 
 **Reference (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/ref.wav" type="audio/wav">
+  <source src="./test_audio/GenSpeech-LPCNet_listening_test-mfall-dir1/ref.wav" type="audio/wav">
 </video>
 
 
@@ -92,32 +92,32 @@ Example: LPCNet_listening_test/mfall/dir1/
 
 **C01 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_01_NOISE_MK.wav" type="audio/wav">
+  <source src="./test_audio/TCDvoip-NOISE/C_01_NOISE_MK.wav" type="audio/wav">
 </video>
 
 **C05 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_05_NOISE_MK.wav" type="audio/wav">
+  <source src="./test_audio/TCDvoip-NOISE/C_05_NOISE_MK.wav" type="audio/wav">
 </video>
 
 **C09 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_09_NOISE_MK.wav" type="audio/wav">
+  <source src="./test_audio/TCDvoip-NOISE/C_09_NOISE_MK.wav" type="audio/wav">
 </video>
 
 **C13 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_13_NOISE_MK.wav" type="audio/wav">
+  <source src="./test_audio/TCDvoip-NOISE/C_13_NOISE_MK.wav" type="audio/wav">
 </video>
 
 **C17 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_17_NOISE_MK.wav" type="audio/wav">
+  <source src="./test_audio/TCDvoip-NOISE/C_17_NOISE_MK.wav" type="audio/wav">
 </video>
 
 **C21 (Distill-MOS: ??, Human MOS: ??)**  
 <video controls>
-  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_21_NOISE_MK.wav" type="audio/wav">
+  <source src="./test_audio/TCDvoip-NOISE/C_21_NOISE_MK.wav" type="audio/wav">
 </video>
 
 

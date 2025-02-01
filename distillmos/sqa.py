@@ -285,7 +285,5 @@ def command_line_inference():
         with open(args.output, "w") as f:
             f.write("file,DistillMOS\n")
             for line, y in _infer_file_list(files):
-                if input_type == "folder" or (input_type == "file_list" and args.input):
-                    line = os.path.relpath(line, args.input)
                 print(f"{line} DistillMOS: {y}")  # always print to stdout
                 f.write(f"{line},{y}\n")

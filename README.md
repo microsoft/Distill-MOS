@@ -57,9 +57,7 @@ Here are some example estimates from the <a href="https://github.com/QxLabIrelan
 Example: LPCNet_listening_test/mfall/dir1/
 
 **LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)**  
-<video controls>
-  <source src="https://github.com/user-attachments/assets/2ef36e8c-6915-4e4e-9697-871a6420da5a">
-</video>
+<video src="https://github.com/user-attachments/assets/2ef36e8c-6915-4e4e-9697-871a6420da5a">
 
 
 **LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)**  

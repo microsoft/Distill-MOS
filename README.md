@@ -52,26 +52,73 @@ for a detailed list of available commands and options.
 ## Example Ratings
 Here are some example estimates from the <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech">GenSpeech</a> and <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE">TCDvoip-NOISE</a> datasets.
 
-### GenSpeech
-Example: LPCNet_listening_test/mfall/dir1/
 
 ### GenSpeech
 Example: LPCNet_listening_test/mfall/dir1/
-- [LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnq.wav)
-- [LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnu.wav)
-- [MELP (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/melp.wav)
-- [Opus (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/opus.wav)
-- [Speex (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/speex.wav)
-- [Reference (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/ref.wav)
 
-### TCDvoip-NOISE
-Speaker MK
--  [C01 (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_01_NOISE_MK.wav)
--  [C05 (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_05_NOISE_MK.wav)
--  [C09 (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_09_NOISE_MK.wav)
--  [C13 (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_13_NOISE_MK.wav)
--  [C17 (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_17_NOISE_MK.wav)
--  [C21 (Distill-MOS: ??, Human MOS: ??)](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_21_NOISE_MK.wav)
+**LPCNet Quantized (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnq.wav" type="audio/wav">
+</audio>
+
+**LPCNet Unquantized (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/lpcnu.wav" type="audio/wav">
+</audio>
+
+**MELP (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/melp.wav" type="audio/wav">
+</audio>
+
+**Opus (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/opus.wav" type="audio/wav">
+</audio>
+
+**Speex (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/speex.wav" type="audio/wav">
+</audio>
+
+**Reference (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir1/ref.wav" type="audio/wav">
+</audio>
+
+
+### TCDvoip-NOISE  
+**Speaker MK**  
+
+**C01 (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_01_NOISE_MK.wav" type="audio/wav">
+</audio>
+
+**C05 (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_05_NOISE_MK.wav" type="audio/wav">
+</audio>
+
+**C09 (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_09_NOISE_MK.wav" type="audio/wav">
+</audio>
+
+**C13 (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_13_NOISE_MK.wav" type="audio/wav">
+</audio>
+
+**C17 (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_17_NOISE_MK.wav" type="audio/wav">
+</audio>
+
+**C21 (Distill-MOS: ??, Human MOS: ??)**  
+<audio controls>
+  <source src="https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/tcdvoip/TCDvoip/Test_Set/NOISE/C_21_NOISE_MK.wav" type="audio/wav">
+</audio>
 
 
 ## Intended Uses

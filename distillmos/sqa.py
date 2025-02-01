@@ -195,7 +195,7 @@ def command_line_inference():
         "-o",
         "--output",
         type=str,
-        help="output csv file, not written if only a single file is provided, default is ./distillmos_inference.csv",
+        help="output csv file, written by default to ./distillmos_inference.csv, not written by default if only a single file is provided",
     )
     # add optional argument for file list
     parser.add_argument(
@@ -218,7 +218,7 @@ def command_line_inference():
         if os.path.isdir(args.input) and not args.file_list:
             input_type = "folder"
         else:
-            if not args.input.endswith(".wav"):
+            if not args.input.lower().endswith(".wav"):
                 parser.error("Input file must be a wav file.")
             if args.file_list:
                 parser.error(
@@ -232,9 +232,9 @@ def command_line_inference():
         input_type = "file_list"
 
     if args.output:
-        if input_type == "file":
-            parser.error("Output file cannot be provided for single file input.")
+        output_provided = True
     else:
+        output_provided = False
         args.output = "distillmos_inference.csv"
 
     # make sure that output file directory exists
@@ -244,7 +244,7 @@ def command_line_inference():
     # make sure not to overwrite existing output file
     if os.path.exists(args.output):
         print(
-            f"Warning: Output file {args.output} already exists. A new name will be generated to avoid overwriting the existing file."
+            f"Warning: Output file {args.output} already exists. Generating a new name to avoid overwriting the existing file."
         )
         i = 1
         while os.path.exists(args.output):
@@ -272,22 +272,16 @@ def command_line_inference():
                 files = [os.path.join(args.input, line.strip()) for line in f]
             else:
                 files = [line.strip() for line in f]
-
-    if input_type == "file":
-        for line, y in _infer_file_list([args.input]):
-            # trim print output, so that it fits in one line in the console
-            if len(line) > 50:
-                printline = "[...]" + line[-50:]
-            else:
-                printline = line
-            print(f"{printline} DistillMOS: {y}")
-    else:
+    elif input_type == "file":
+        files = [args.input]
+    
+    results_strings = []
+    for line, y in _infer_file_list(files):
+        truncated_line = f"[...]{line[-50:]}" if len(line) > 50 else line
+        print(f"{truncated_line} DistillMOS: {y}")
+        results_strings.append(f"{line}, {y}\n")
+    
+    if output_provided and input_type != "file":
         with open(args.output, "w") as f:
-            f.write("file,DistillMOS\n")
-            for line, y in _infer_file_list(files):
-                if len(line) > 50:
-                    printline = "[...]" + line[-50:]
-                else:
-                    printline = line
-                print(f"{printline} DistillMOS: {y}")
-                f.write(f"{line},{y}\n")
+            f.write("filename, DistillMOS\n")
+            f.write("".join(results_strings))

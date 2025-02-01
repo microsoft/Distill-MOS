@@ -184,7 +184,7 @@ def command_line_inference():
     parser = argparse.ArgumentParser()
     # enable usage for single wav file, folder, or list of files (one per line, file paths relative if folder is provided), enable output to a (default or specified) csv file.
     # first add positional argument for input folder or file (optional, because file list can be provided)
-    
+
     parser.add_argument(
         "input",
         type=str,
@@ -202,7 +202,7 @@ def command_line_inference():
         "-l",
         "--file_list",
         type=str,
-        help="file list for inference, if folder is given, entries in file list are relative to folder",
+        help="file list textfile (one wav file path for line) for inference, if folder is given, entries in file list are relative to folder",
         default=None,
     )
 
@@ -250,14 +250,9 @@ def command_line_inference():
         while os.path.exists(args.output):
             filename, filext = os.path.splitext(args.output)
             if filename.endswith(f"_{i-1}"):
-                filename = filename[:-len(f"_{i-1}")]
+                filename = filename[: -len(f"_{i-1}")]
 
-
-            args.output = os.path.join(
-                filename
-                + f"_{i}"
-                + filext
-            )
+            args.output = os.path.join(filename + f"_{i}" + filext)
             i += 1
 
     files = []

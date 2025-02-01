@@ -281,7 +281,7 @@ def command_line_inference():
         print(f"{truncated_line} DistillMOS: {y}")
         results_strings.append(f"{line}, {y}\n")
     
-    if output_provided and input_type != "file":
+    if output_provided or input_type != "file":
         with open(args.output, "w") as f:
             f.write("filename, DistillMOS\n")
             f.write("".join(results_strings))

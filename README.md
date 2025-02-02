@@ -51,33 +51,33 @@ for a detailed list of available commands and options.
 
 ## 🎧 Example Ratings: See Distill-MOS in Action!  
 
-How well does Distill-MOS estimate speech quality? Below are example ratings from the [GenSpeech](https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech) dataset, licensed under [Apache v2](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE).  
+Below are example ratings from the [GenSpeech](https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech) dataset, licensed under [Apache v2](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE).  
 
 🔊 **Example: LPCNet_listening_test/mfall/dir1/**  
 
 ### 🎙️Uncoded Reference Speech
-⭐ **Distill-MOS: 4.42**  
-<video src="https://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d">  
+⭐ **Distill-MOS: 4.55**  
+<video src="https://github.com/user-attachments/assets/9859e950-3f27-4ca0-bf19-276a18f678fa">  
 
 ### 🔹 Speex (Lowest Distill-MOS)  
-⭐ **Distill-MOS: 1.97**  
-<video src="https://github.com/user-attachments/assets/df61b5d9-5c69-472a-a6c7-05d331785b55">  
-
-### 🔹 LPCNet Quantized  
-⭐ **Distill-MOS: 2.64**  
-<video src="https://github.com/user-attachments/assets/fc0f3e04-fa46-49fb-9751-904a6d1249c2">  
+⭐ **Distill-MOS: 1.47**  
+<video src="https://github.com/user-attachments/assets/b59479c3-7e9d-4fba-beb8-f3ac3be8f8be">  
 
 ### 🔹 MELP  
-⭐ **Distill-MOS: 2.86**  
-<video src="https://github.com/user-attachments/assets/6fee729d-469e-4dc8-a5cd-667637411974">  
+⭐ **Distill-MOS: 3.09**  
+<video src="https://github.com/user-attachments/assets/0f7370b3-6bea-4e00-b13e-6d261f2f4d9f">  
+
+### 🔹 LPCNet Quantized  
+⭐ **Distill-MOS: 3.28**  
+<video src="https://github.com/user-attachments/assets/406290e5-7f4f-4ee7-8fa4-62da797a99ad">  
 
 ### 🔹 Opus  
-⭐ **Distill-MOS: 3.63**  
-<video src="https://github.com/user-attachments/assets/fecdf175-0e32-458a-8e20-1861537d110a">  
+⭐ **Distill-MOS: 4.05**  
+<video src="https://github.com/user-attachments/assets/6554e3ce-e5f1-4594-aeb0-7fdaf25bd45d">  
 
 ### 🔹 LPCNet Unquantized (Highest Distill-MOS among Coded Versions)  
-⭐ **Distill-MOS: 3.68**  
-<video src="https://github.com/user-attachments/assets/1b08cd9d-c395-46c2-8707-c216bd742320">  
+⭐ **Distill-MOS: 4.12**  
+<video src="https://github.com/user-attachments/assets/6407c551-7897-4f27-b6f7-528c35bffd64">  
 
 
 ## Intended Uses

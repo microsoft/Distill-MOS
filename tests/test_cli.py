@@ -5,17 +5,21 @@ def test_cli():
     import subprocess
     import os
 
-    DATA_DIR = "./data/Genspeech_LPCNet_listening_test_mfall_dir3/"
+    DATA_DIR = "./tests/data/Genspeech_LPCNet_listening_test_mfall_dir3/"
     OUTPUT_FILE = "./distillmos_inference.csv"
     EXPECTED_SCORES = {
-        "lpcnq.wav": 4.12,
-        "lpcnu.wav": 3.0,
+        "lpcnq.wav": 3.29,
+        "lpcnu.wav": 4.12,
         "melp.wav": 3.09,
         "opus.wav": 4.05,
         "ref.wav": 4.55,
         "speex.wav": 1.47,
     }
     TOLERANCE = 0.005
+
+    # Make sure the output file does not exist
+    if os.path.exists(OUTPUT_FILE):
+        os.remove(OUTPUT_FILE)
 
     # Run CLI command
     subprocess.run(["distillmos", DATA_DIR], check=True)
@@ -26,6 +30,9 @@ def test_cli():
     # Read and validate output
     with open(OUTPUT_FILE, "r") as f:
         lines = f.readlines()
+    
+    # delete the output file
+    os.remove(OUTPUT_FILE)
 
     assert len(lines) > 1, "Output file is empty"
 

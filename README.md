@@ -51,9 +51,9 @@ for a detailed list of available commands and options.
 
 ## 🎧 Example Ratings: See Distill-MOS in Action!  
 
-Below are example ratings from the [GenSpeech](https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech) dataset, licensed under [Apache v2](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE).  
+Below are example ratings from the [GenSpeech](https://arxiv.org/abs/2003.11882) dataset (available https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech), licensed under [Apache v2.0](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE).  
 
-🔊 **Example: LPCNet_listening_test/mfall/dir3/**  
+🔊 **Example: LPCNet_listening_test/mfall/dir3/**
 
 ### 🎙️Uncoded Reference Speech
 ⭐ **Distill-MOS: 4.55**  

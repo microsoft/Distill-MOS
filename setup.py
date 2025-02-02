@@ -19,6 +19,9 @@ setup(
         "soundfile",
         "torchaudio",
     ],
+    extras_require={
+        "dev": ["pytest"],
+    },
     entry_points={
         "console_scripts": [
             "distillmos = distillmos.sqa:command_line_inference",

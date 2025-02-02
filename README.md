@@ -50,26 +50,26 @@ distillmos --help
 for a detailed list of available commands and options.
 
 ## Example Ratings
-Here are some example estimates from the <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech">GenSpeech</a> dataset licensed under <a href="https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE">Apache v2>.
+Here are some example estimates from the <a href="https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech">GenSpeech</a> dataset licensed under <a href="https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE">Apache v2</a>.
 
 Example: LPCNet_listening_test/mfall/dir1/
 
-**LPCNet Quantized (Distill-MOS: ??, Human MOS: 3.82)**  
+**LPCNet Quantized (Distill-MOS: 2.64, Human MOS: 3.82)**  
 <video src="https://github.com/user-attachments/assets/fc0f3e04-fa46-49fb-9751-904a6d1249c2">
 
-**LPCNet Unquantized (Distill-MOS: ??, Human MOS: 4.19)**  
+**LPCNet Unquantized (Distill-MOS: 3.68, Human MOS: 4.19)**  
 <video src="https://github.com/user-attachments/assets/1b08cd9d-c395-46c2-8707-c216bd742320">
 
-**MELP (Distill-MOS: ??, Human MOS: 2.27)**  
+**MELP (Distill-MOS: 2.86, Human MOS: 2.27)**  
 <video src="https://github.com/user-attachments/assets/6fee729d-469e-4dc8-a5cd-667637411974">
 
-**Opus (Distill-MOS: ??, Human MOS: 4.25)**  
+**Opus (Distill-MOS: 3.63, Human MOS: 4.25)**  
 <video src="https://github.com/user-attachments/assets/fecdf175-0e32-458a-8e20-1861537d110a">
 
-**Speex (Distill-MOS: ??, Human MOS: 1.41)**  
+**Speex (Distill-MOS: 1.97, Human MOS: 1.41)**  
 <video src="https://github.com/user-attachments/assets/df61b5d9-5c69-472a-a6c7-05d331785b55">
 
-**Reference (Distill-MOS: ??)**  
+**Reference (Distill-MOS: 4.42)**  
 <video src="https://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d">
 
 

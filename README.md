@@ -49,34 +49,34 @@ distillmos --help
 ```
 for a detailed list of available commands and options.
 
-## 🎧 Example Ratings: See Distill-MOS in Action!  
+## Example Ratings: See Distill-MOS in Action!  
 
 Below are example ratings from the [GenSpeech](https://arxiv.org/abs/2003.11882) dataset (available https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech), licensed under [Apache v2.0](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE).  
 
-🔊 **Example: LPCNet_listening_test/mfall/dir3/**
+**Example: LPCNet_listening_test/mfall/dir3/**
 
-### 🎙️Uncoded Reference Speech
-⭐ **Distill-MOS: 4.55**  
+### Uncoded Reference Speech
+**Distill-MOS: 4.55**  
 <video src="https://github.com/user-attachments/assets/9859e950-3f27-4ca0-bf19-276a18f678fa">  
 
 ### 🔹 Speex (Lowest Distill-MOS)  
-⭐ **Distill-MOS: 1.47**  
+**Distill-MOS: 1.47**  
 <video src="https://github.com/user-attachments/assets/b59479c3-7e9d-4fba-beb8-f3ac3be8f8be">  
 
 ### 🔹 MELP  
-⭐ **Distill-MOS: 3.09**  
+**Distill-MOS: 3.09**  
 <video src="https://github.com/user-attachments/assets/0f7370b3-6bea-4e00-b13e-6d261f2f4d9f">  
 
 ### 🔹 LPCNet Quantized  
-⭐ **Distill-MOS: 3.28**  
+**Distill-MOS: 3.28**  
 <video src="https://github.com/user-attachments/assets/406290e5-7f4f-4ee7-8fa4-62da797a99ad">  
 
 ### 🔹 Opus  
-⭐ **Distill-MOS: 4.05**  
+**Distill-MOS: 4.05**  
 <video src="https://github.com/user-attachments/assets/6554e3ce-e5f1-4594-aeb0-7fdaf25bd45d">  
 
 ### 🔹 LPCNet Unquantized (Highest Distill-MOS among Coded Versions)  
-⭐ **Distill-MOS: 4.12**  
+**Distill-MOS: 4.12**  
 <video src="https://github.com/user-attachments/assets/6407c551-7897-4f27-b6f7-528c35bffd64">  
 
 

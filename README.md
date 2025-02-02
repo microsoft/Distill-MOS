@@ -55,13 +55,11 @@ How well does Distill-MOS estimate speech quality? Below are example ratings fro
 
 🔊 **Example: LPCNet_listening_test/mfall/dir1/**  
 
-### 🎙️Uncoded Reference Speech (Highest Quality)  
+### 🎙️Uncoded Reference Speech
 ⭐ **Distill-MOS: 4.42**  
 <video src="https://github.com/user-attachments/assets/1707455f-ead8-41a7-81c8-98b062229c3d">  
 
-**Coded Versions (Ordered by Distill-MOS Score, Low to High):**  
-
-### 🔹 Speex (Lowest Quality)  
+### 🔹 Speex (Lowest Distill-MOS)  
 ⭐ **Distill-MOS: 1.97**  
 <video src="https://github.com/user-attachments/assets/df61b5d9-5c69-472a-a6c7-05d331785b55">  
 
@@ -77,7 +75,7 @@ How well does Distill-MOS estimate speech quality? Below are example ratings fro
 ⭐ **Distill-MOS: 3.63**  
 <video src="https://github.com/user-attachments/assets/fecdf175-0e32-458a-8e20-1861537d110a">  
 
-### 🔹 LPCNet Unquantized (Highest Coded Quality)  
+### 🔹 LPCNet Unquantized (Highest Distill-MOS among Coded Versions)  
 ⭐ **Distill-MOS: 3.68**  
 <video src="https://github.com/user-attachments/assets/1b08cd9d-c395-46c2-8707-c216bd742320">  
 

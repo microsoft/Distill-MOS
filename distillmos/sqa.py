@@ -3,6 +3,8 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 from torch import nn
+import torchaudio
+import argparse
 from xls_r_sqa.config import Config, FEAT_SEQ_LEN
 from xls_r_sqa.sqa_model import SingleLayerModel
 
@@ -89,7 +91,7 @@ class ConvTransformerSQAModel(nn.Module):
     def __init__(self, load_weights=True, segmenting_in_forward=True):
         """
         @param load_weights: whether to load the weights from the default checkpoint, default is True
-        @param segmenting_in_forward: whether to segment and pad the input in the forward pass, default is True. 
+        @param segmenting_in_forward: whether to segment and pad the input in the forward pass, default is True.
         If False (the preferred option for training/fine-tuning), the input must have shape (batch, 122880)
         """
         super().__init__()
@@ -110,7 +112,7 @@ class ConvTransformerSQAModel(nn.Module):
         self.segmenting_in_forward = segmenting_in_forward
 
         if load_weights:
-            chkpt = torch.load(DEFAULT_WEIGHTS_CHKPT, map_location="cpu")
+            chkpt = torch.load(DEFAULT_WEIGHTS_CHKPT, map_location="cpu", weights_only=True)
             self.load_state_dict(chkpt["model"])
             print("DistillMOS variant 7 weights loaded from:", DEFAULT_WEIGHTS_CHKPT)
 
@@ -152,3 +154,134 @@ class ConvTransformerSQAModel(nn.Module):
             norm_qual = torch.mean(norm_qual, dim=0)
 
         return 1 + 4 * norm_qual
+
+
+# file list inference
+def _infer_file_list(file_list):
+    model = ConvTransformerSQAModel()
+    model.eval()
+    for line in file_list:
+        x, sr = torchaudio.load(line)
+
+        if x.shape[0] > 1:
+            print(
+                f"Warning: {line} has multiple channels, using only the first channel."
+            )
+        x = x[0, None, :]
+
+        # resample to 16kHz if needed
+        if sr != 16000:
+            x = torchaudio.transforms.Resample(sr, 16000)(x)
+
+        with torch.no_grad():
+            y = model(x)
+
+        yield line, y.item()
+
+
+# command line inference
+def command_line_inference():
+    parser = argparse.ArgumentParser()
+    # enable usage for single wav file, folder, or list of files (one per line, file paths relative if folder is provided), enable output to a (default or specified) csv file.
+    # first add positional argument for input folder or file (optional, because file list can be provided)
+
+    parser.add_argument(
+        "input",
+        type=str,
+        help="input folder or file, for folder input, all wav files in the folder are considered",
+    )
+    # add optional argument for output csv file
+    parser.add_argument(
+        "-o",
+        "--output",
+        type=str,
+        help="output csv file, written by default to ./distillmos_inference.csv, not written by default if only a single file is provided",
+    )
+    # add optional argument for file list
+    parser.add_argument(
+        "-l",
+        "--file_list",
+        type=str,
+        help="file list textfile (one wav file path for line) for inference, if folder is given, entries in file list are relative to folder",
+        default=None,
+    )
+
+    args = parser.parse_args()
+    # make sure that either input or file list is provided
+    if not args.input and not args.file_list:
+        parser.error("Either input or file list must be provided.")
+
+    # make sure that input is a folder or file
+    if args.input:
+        if not os.path.exists(args.input):
+            parser.error("Input folder or file does not exist.")
+        if os.path.isdir(args.input) and not args.file_list:
+            input_type = "folder"
+        else:
+            if not args.input.lower().endswith(".wav"):
+                parser.error("Input file must be a wav file.")
+            if args.file_list:
+                parser.error(
+                    "File list and single file input cannot be provided together."
+                )
+            input_type = "file"
+    else:
+        # make sure that file list exists
+        if not os.path.exists(args.file_list):
+            parser.error("File list does not exist")
+        input_type = "file_list"
+
+    if args.output:
+        output_provided = True
+    else:
+        output_provided = False
+        args.output = "distillmos_inference.csv"
+
+    # make sure that output file directory exists
+    output_dir = os.path.abspath(os.path.dirname(args.output))
+    if not os.path.exists(output_dir):
+        parser.error("Invalid path for output file, directory does not exist")
+    # make sure not to overwrite existing output file
+    if os.path.exists(args.output):
+        print(
+            f"Warning: Output file {args.output} already exists. Generating a new name to avoid overwriting the existing file."
+        )
+        i = 1
+        while os.path.exists(args.output):
+            filename, filext = os.path.splitext(args.output)
+            if filename.endswith(f"_{i-1}"):
+                filename = filename[: -len(f"_{i-1}")]
+
+            args.output = os.path.join(filename + f"_{i}" + filext)
+            i += 1
+
+    files = []
+    if input_type == "folder":
+        files = [
+            os.path.join(args.input, f)
+            for f in os.listdir(args.input)
+            if f.endswith(".wav")
+        ]
+        # make sure that there are wav files in the folder
+        if not files:
+            parser.error("No wav files found in the folder")
+    elif input_type == "file_list":
+        # read file list
+        with open(args.file_list) as f:
+            if args.input:
+                files = [os.path.join(args.input, line.strip()) for line in f]
+            else:
+                files = [line.strip() for line in f]
+    elif input_type == "file":
+        files = [args.input]
+    
+    results_strings = []
+    for line, y in _infer_file_list(files):
+        truncated_line = f"[...]{line[-50:]}" if len(line) > 50 else line
+        print(f"{truncated_line} DistillMOS: {y}")
+        results_strings.append(f"{line}, {y}\n")
+    
+    if output_provided or input_type != "file":
+        with open(args.output, "w") as f:
+            f.write("filename, DistillMOS\n")
+            f.write("".join(results_strings))

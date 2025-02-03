@@ -1,23 +1,6 @@
 <h1 align="center">Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment</h1>
 
-This repository contains sample code and weights accompanying the paper "Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment".
-
-## Intended Uses
-
-### Primary Use Cases
-
-The model released in this repository takes a short speech recording as input and predicts its perceptual speech quality by providing an estimated mean opinion score (MOS). 
-The model is much smaller than other state-of-the-art MOS estimators, providing a trade-off between parameter count and speech quality estimation performance.
-The primary use of this model is to reproduce results reported in the paper and for research purposes as a relatively light-weight MOS estimation model that generalizes across a variety of tasks. 
-
-### Use Case Considerations and Model Limitations
-
-The model is only evaluated on the tasks reported in the paper, including deep noise suppression and signal improvement, and only for speech. The model may not generalize to unseen tasks or languages. 
-Use of the model in unsupported scenarios may result in wrong or misleading speech quality estimates. 
-When using the model for a specific task, developers should consider accuracy, safety, and fairness, particularly in high-risk scenarios. 
-Developers should be aware of and adhere to applicable laws or regulations (including privacy, trade compliance laws, etc.) that are relevant to their use case.
-
-***Nothing contained in this Model Card should be interpreted as or deemed a restriction or modification to the license the model is released under.*** 
+This repository contains sample code and weights accompanying the paper "Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment". Distill-MOS is an compact and efficient speech quality assessment model learned from a larger SSL-based speech quality assessment model.
 
 ## Usage
 ### Local Installation
@@ -38,10 +21,67 @@ sqa_model.eval()
 ```
 Weights are loaded automatically.
 
-The input to the model is a `torch.Tensor` with shape `[batch_size x signal_length]`, let's assume the variable (`speech`), containing mono speech waveforms **sampled at 16kHz**. The model retuns a batch of estimated mean opinion scores in the range 1 (bad) .. 5 (excellent).
+The input to the model is a `torch.Tensor` with shape `[batch_size x signal_length]`, containing mono speech waveforms **sampled at 16kHz**. The model returns a batch of estimated mean opinion scores in the range 1 (bad) .. 5 (excellent).
 ```python
-mos = sqa_model(speech)
+import torchaudio
+
+x, sr = torchaudio.load('my_speech_file.wav')
+if x.shape[0] > 1:
+    print(
+        f"Warning: file has multiple channels, using only the first channel."
+    )
+x = x[0, None, :]
+
+# resample to 16kHz if needed
+if sr != 16000:
+    x = torchaudio.transforms.Resample(sr, 16000)(x)
+
+with torch.no_grad():
+    mos = sqa_model(x)
+
+print('MOS Score:', mos)
 ```
+
+### Command Line Interface
+You can also use distillmos from the command line for inference on single .wav files, folders containing .wav files, and lists of file paths. Please call
+```bash
+distillmos --help
+```
+for a detailed list of available commands and options.
+
+## Example Ratings: See Distill-MOS in Action!  
+
+Below are example ratings from the [GenSpeech](https://arxiv.org/abs/2003.11882) dataset (available https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech), licensed under [Apache v2.0](https://github.com/QxLabIreland/datasets/blob/597fbf9b60efe555c1f7180e48a508394d817f73/LICENSE).  
+
+**Example: LPCNet_listening_test/mfall/dir3/, click 🔊 to download/play**
+
+| Audio | Distill-MOS | Human MOS |
+|:--------|:-----------|:----------|
+| [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/ref.wav) Uncoded Reference Speech | 4.55 |  |
+| [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/speex.wav) Speex (Lowest Distill-MOS) | 1.47 | 1.18 |
+| [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/melp.wav) MELP | 3.09 | 1.95 |
+| [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/lpcnq.wav) LPCNet Quantized | 3.28 | 3.35 |
+| [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/opus.wav) Opus | 4.05 | 4.31 |
+| [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/lpcnu.wav) LPCNet Unquantized (Highest Distill-MOS among Coded Versions) | 4.12 | 4.64 |
+
+
+## Intended Uses
+
+### Primary Use Cases
+
+The model released in this repository takes a short speech recording as input and predicts its perceptual speech quality by providing an estimated mean opinion score (MOS). 
+The model is much smaller than other state-of-the-art MOS estimators, providing a trade-off between parameter count and speech quality estimation performance.
+The primary use of this model is to reproduce results reported in the paper and for research purposes as a relatively light-weight MOS estimation model that generalizes across a variety of tasks. 
+
+### Use Case Considerations and Model Limitations
+
+The model is only evaluated on the tasks reported in the paper, including deep noise suppression and signal improvement, and only for speech. The model may not generalize to unseen tasks or languages. 
+Use of the model in unsupported scenarios may result in wrong or misleading speech quality estimates. 
+When using the model for a specific task, developers should consider accuracy, safety, and fairness, particularly in high-risk scenarios. 
+Developers should be aware of and adhere to applicable laws or regulations (including privacy, trade compliance laws, etc.) that are relevant to their use case.
+
+***Nothing contained in this Model Card should be interpreted as or deemed a restriction or modification to the license the model is released under.*** 
+
 
 ## Benchmarks
 <img src="benchmark_results.png" alt="Pearson correlation coefficient on test datasets for baselines, teacher model, and selected distilled and pruned models." width="1000">

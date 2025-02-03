@@ -112,7 +112,7 @@ class ConvTransformerSQAModel(nn.Module):
         self.segmenting_in_forward = segmenting_in_forward
 
         if load_weights:
-            chkpt = torch.load(DEFAULT_WEIGHTS_CHKPT, map_location="cpu")
+            chkpt = torch.load(DEFAULT_WEIGHTS_CHKPT, map_location="cpu", weights_only=True)
             self.load_state_dict(chkpt["model"])
             print("DistillMOS variant 7 weights loaded from:", DEFAULT_WEIGHTS_CHKPT)
 

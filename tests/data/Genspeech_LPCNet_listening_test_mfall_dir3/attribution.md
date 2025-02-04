@@ -1,1 +1,0 @@
-The source of these test audio files is the GenSpeech dataset (https://github.com/QxLabIreland/datasets/tree/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech). It is licensed under Apache v2.0 (cf. `./LICENSE`).

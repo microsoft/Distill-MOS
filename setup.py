@@ -20,7 +20,7 @@ setup(
         "torchaudio",
     ],
     extras_require={
-        "dev": ["pytest"],
+        "dev": ["pytest", "requests"]
     },
     entry_points={
         "console_scripts": [

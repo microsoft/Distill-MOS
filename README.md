@@ -1,6 +1,6 @@
-<h1 align="center">Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment</h1>
+# Distill-MOS: a compact speech-quality assessment model
 
-This repository contains sample code and weights accompanying the paper "Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment". Distill-MOS is an compact and efficient speech quality assessment model learned from a larger SSL-based speech quality assessment model.
+Distill-MOS is a compact and efficient speech quality assessment model learned from a larger speech quality assessment model based on wav2vec2.0 XLS-R embeddings. The work is described in the paper: "Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment".
 
 ## Usage
 ### Local Installation
@@ -64,6 +64,24 @@ Below are example ratings from the [GenSpeech](https://arxiv.org/abs/2003.11882)
 | [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/opus.wav) Opus | 4.05 | 4.31 |
 | [🔊](https://github.com/QxLabIreland/datasets/raw/597fbf9b60efe555c1f7180e48a508394d817f73/genspeech/Genspeech/LPCNet_listening_test/mfall/dir3/lpcnu.wav) LPCNet Unquantized (Highest Distill-MOS among Coded Versions) | 4.12 | 4.64 |
 
+## Install from source and test locally
+- Clone this repository
+- Run `pip install ".[dev]"` from the repository root in a fresh Python environment to install from source.
+- Run `pytest`. The test `test_cli.test_cli()` will download some speech samples from the Genspeech dataset and compare the model output to expected scores.
+
+## Citation  
+If this model helps you in your work, we’d love for you to cite our paper! 
+```bibtex
+@misc{stahl2025distillation,
+      title={Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment}, 
+      author={Benjamin Stahl and Hannes Gamper},
+      year={2025},
+      eprint={????.?????},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/????.?????}, 
+}
+```
 
 ## Intended Uses
 

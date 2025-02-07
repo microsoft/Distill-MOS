@@ -5,8 +5,8 @@ import torch.nn.functional as F
 from torch import nn
 import torchaudio
 import argparse
-from xls_r_sqa.config import Config, FEAT_SEQ_LEN
-from xls_r_sqa.sqa_model import SingleLayerModel
+from .third_party.xls_r_sqa.config import Config, FEAT_SEQ_LEN
+from .third_party.xls_r_sqa.sqa_model import SingleLayerModel
 
 N_LAYERS_CNN = 6
 CNN_FINAL_CHANNELS = 256

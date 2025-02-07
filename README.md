@@ -21,7 +21,7 @@ sqa_model.eval()
 ```
 Weights are loaded automatically.
 
-The input to the model is a `torch.Tensor` with shape `[batch_size, signal_length]`, containing mono speech waveforms **sampled at 16kHz**. The model returns mean opinion scores with `[batch_size,]` (one for each audio sample in the batch) in the range 1 (bad) .. 5 (excellent).
+The input to the model is a `torch.Tensor` with shape `[batch_size, signal_length]`, containing mono speech waveforms **sampled at 16kHz**. The model returns mean opinion scores with `[batch_size,]` (one for each audio waveform in the batch) in the range 1 (bad) .. 5 (excellent).
 ```python
 import torchaudio
 

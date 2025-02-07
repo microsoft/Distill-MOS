@@ -4,7 +4,7 @@ setup(
     name="distillmos",
     version="0.9.0",
     description="Efficient speech quality assessment learned from SSL-based speech quality assessment model",
-    long_description=open("README.md").read(),
+    long_description=open("README.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     author="Microsoft | Benjamin Stahl, Hannes Gamper",
     packages=find_packages(),

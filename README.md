@@ -43,7 +43,7 @@ print('MOS Score:', mos)
 ```
 
 ### Command Line Interface
-You can also use distillmos from the command line for inference on single .wav files, folders containing .wav files, and lists of file paths. Please call
+You can also use distillmos from the command line for inference on individual .wav files, folders containing .wav files, and lists of file paths. Please call
 ```bash
 distillmos --help
 ```
@@ -114,7 +114,7 @@ Developers should be aware of and adhere to applicable laws or regulations (incl
 | Inputs              | Speech recording |
 | Input length        | 7.68 s / arbitrary length by segmenting |
 | GPUs                | 4 x A6000 |
-| Training data       | see below |
+| Training data       | See below |
 | Outputs             | Estimate of speech quality mean-opinion score (MOS) |
 | Dates               | Trained between May and July 2024 |
 | Supported languages | English |

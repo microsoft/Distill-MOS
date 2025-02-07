@@ -112,13 +112,11 @@ Developers should be aware of and adhere to applicable laws or regulations (incl
 | Developer           | Microsoft |
 | Architecture        | Convolutional transformer |
 | Inputs              | Speech recording |
-| Input length        |  |
+| Input length        | 7.68 s / arbitrary length by segmenting |
 | GPUs                | 4 x A6000 |
-| Training time       | |
-| Training data       | |
+| Training data       | see below |
 | Outputs             | Estimate of speech quality mean-opinion score (MOS) |
 | Dates               | Trained between May and July 2024 |
-| Status              | |
 | Supported languages | English |
 | Release date        | Oct 2024 |
 | License             | MIT |

@@ -103,6 +103,7 @@ Developers should be aware of and adhere to applicable laws or regulations (incl
 
 ## Benchmarks
 ![Pearson correlation coefficient on test datasets for baselines, teacher model, and selected distilled and pruned models.](https://github.com/user-attachments/assets/667aca87-1cc2-4b50-b1a2-60cb9661ce76)
+Pearson correlation coefficient on test datasets for baselines, teacher model, and selected distilled and pruned models.
 
 ## Training
 

@@ -76,10 +76,10 @@ If this model helps you in your work, we’d love for you to cite our paper!
       title={Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment}, 
       author={Benjamin Stahl and Hannes Gamper},
       year={2025},
-      eprint={????.?????},
+      eprint={2502.05356},
       archivePrefix={arXiv},
       primaryClass={eess.AS},
-      url={https://arxiv.org/abs/????.?????}, 
+      url={https://arxiv.org/abs/2502.05356}, 
 }
 ```
 

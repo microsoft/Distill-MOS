@@ -1,6 +1,6 @@
 # Distill-MOS: a compact speech-quality assessment model
 
-Distill-MOS is a compact and efficient speech quality assessment model learned from a larger speech quality assessment model based on wav2vec2.0 XLS-R embeddings. The work is described in the paper: "Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment".
+Distill-MOS is a compact and efficient speech quality assessment model learned from a larger speech quality assessment model based on wav2vec2.0 XLS-R embeddings. The work is described in the paper: <a href="https://arxiv.org/html/2502.05356v1">"Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment"</a>.
 
 ## Usage
 ### Local Installation
@@ -72,10 +72,13 @@ Below are example ratings from the [GenSpeech](https://arxiv.org/abs/2003.11882)
 ## Citation  
 If this model helps you in your work, we’d love for you to cite our paper! 
 ```bibtex
-@misc{stahl2025distillation,
-      title={Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment}, 
+@INPROCEEDINGS{stahl2025distillation,
+      title={Distillation and Pruning for Scalable Self-Supervised Representation-Based Speech Quality Assessment},
+      booktitle={Proc. IEEE International Conference on Acoustics, Speech and Signal Processing ({ICASSP})}, 
       author={Benjamin Stahl and Hannes Gamper},
       year={2025},
+      keywords={Correlation;Signal processing;Data models;Acoustics;Quality assessment;Speech processing;speech processing;quality of experience},
+      doi={10.1109/ICASSP49660.2025.10888007},
       eprint={2502.05356},
       archivePrefix={arXiv},
       primaryClass={eess.AS},
